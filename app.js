@@ -1,37 +1,32 @@
-const red = document.getElementById("red");
-const yellow = document.getElementById("yellow");
-const green = document.getElementById("green");
+const redLight = document.getElementById("red");
+const yellowLight = document.getElementById("yellow");
+const greenLight = document.getElementById("green");
 const switchBtn = document.getElementById("switchBtn");
 
-function resetLights() {
-	red.style.background = "#444";
-	yellow.style.background = "#444";
-	green.style.background = "#444";
+redLight.style.background = "red";
+let current = "red";
+
+function resetLight() {
+  redLight.style.background = "#444";
+  yellowLight.style.background = "#444";
+  greenLight.style.background = "#444";
 }
 
-let current = "red";
-red.style.background = "red";
-
 function switchLight() {
-	switchBtn.disabled = true;
-	resetLights();
+  resetLight();
+  yellowLight.style.background = "yellow";
 
-	// Nyalain kuning dulu
-	yellow.style.background = "yellow";
-
-	setTimeout(() => {
-		resetLights();
-
-		if (current === "red") {
-			green.style.background = "lime";
-			current = "green";
-		} else {
-			red.style.background = "red";
-			current = "red";
-		}
-
-		switchBtn.disabled = false;
-	}, 1000); // kuning nyala 300ms
+  console.log(current);
+  setTimeout(() => {
+    resetLight();
+    if (current == "red") {
+      current = "green";
+      greenLight.style.background = "green";
+    } else {
+      current = "red";
+      redLight.style.background = "red";
+    }
+  }, 1000);
 }
 
 switchBtn.addEventListener("click", switchLight);
