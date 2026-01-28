@@ -13,6 +13,9 @@ function resetLight() {
 }
 
 function switchLight() {
+  if (switchBtn.disabled) return;
+  switchBtn.disabled = true;
+
   resetLight();
   yellowLight.style.background = "yellow";
 
@@ -26,6 +29,7 @@ function switchLight() {
       current = "red";
       redLight.style.background = "red";
     }
+	switchBtn.disabled = false;
   }, 1000);
 }
 
